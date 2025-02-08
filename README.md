@@ -241,13 +241,13 @@ npm -v
 Your Ubuntu files are stored inside WSL. You can access them in **Windows File Explorer** by typing:
 
 ```plaintext
-\\wsl.localhost\Ubuntu\home\<your-ubuntu-yourname>
+\\wsl.localhost\Ubuntu\home\<your-UNIX-username>
 ```
 
 Or navigate to:
 
 ```plaintext
-C:\Users\YourWindowsUsername\AppData\Local\Packages\CanonicalGroupLimited...\LocalState\rootfs\home\<your-ubuntu-username>
+C:\Users\YourWindowsUsername\AppData\Local\Packages\CanonicalGroupLimited...\LocalState\rootfs\home\<your-UNIX-username>
 ```
 
 ---
