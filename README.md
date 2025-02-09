@@ -180,15 +180,47 @@ To use the same extensions in both environments:
   ```bash
   export EDITOR=nvim
   ```
+
+- **List files in home directory:**
+  ```bash
+  ls -la ~
+  ```
+- **Check installed Node.js version:**
+  ```bash
+  node -v
+  ```
+- **Display system info using Neofetch:**
+  ```bash
+  sudo apt install -y neofetch
+  neofetch
+  ```
+
+---
+
+## **9. Accessing Ubuntu Files from Windows**
+
+Your Ubuntu files are stored inside WSL. You can access them in **Windows File Explorer** by typing:
+
+```plaintext
+\\wsl.localhost\Ubuntu\home\<your-UNIX-username>
+```
+=======
   This allows you to edit files inside your terminal seamlessly.
+
 
 **Pros:**
 ✅ Neovim as default editor in Zsh streamlines workflow.
 ✅ Zsh enhances command-line experience.
 
+
+```plaintext
+C:\Users\YourWindowsUsername\AppData\Local\Packages\CanonicalGroupLimited...\LocalState\rootfs\home\<your-UNIX-username>
+```
+=======
 **Cons:**
 ❌ Using both might be overwhelming for beginners.
 ❌ Requires time to configure properly.
+
 
 ---
 
