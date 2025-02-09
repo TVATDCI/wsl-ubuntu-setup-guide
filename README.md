@@ -156,74 +156,50 @@ source ~/.zshrc
 
 ---
 
-## **6. Set VS Code to Use Ubuntu (WSL) Terminal**
+## **6. Sync VS Code Extensions Between Windows and WSL**
 
-### **Install WSL Extension in VS Code**
+To use the same extensions in both environments:
 
-1. Open **VS Code**.
-2. Press **Ctrl + Shift + X** to open Extensions.
-3. Search for **"Remote - WSL"** and install it.
-4. Restart VS Code.
-
-### **Open VS Code with WSL**
-
-```bash
-code .
-```
-
-### **Set Default Terminal to Ubuntu (Zsh)**
-
-1. Open VS Code settings (**Ctrl + ,**)
-2. Search for `terminal.integrated.defaultProfile.windows`.
-3. Set it to **Ubuntu (WSL)**.
-4. Restart VS Code.
+1. Open **VS Code on Windows**.
+2. Sign in to your **GitHub or Microsoft account** to enable **Settings Sync**.
+3. Open **VS Code inside WSL** using:
+   ```bash
+   code .
+   ```
+4. Sign in again and **enable syncing**.
+5. Your extensions and settings should now be synced!
 
 ---
 
-## **7. Install Node.js, npm, and Git in Ubuntu**
+## **7. Difference Between Zsh and Neovim**
 
-### **Install Node.js and npm**
-
-```bash
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-sudo apt install -y nodejs
-```
-
-Verify installation:
-
-```bash
-node -v
-npm -v
-```
-
-### **Set Up Git and Connect with GitHub**
-
-1. Configure Git username and email:
-   ```bash
-   git config --global user.name "YourName"
-   git config --global user.email "youremail@example.com"
-   ```
-2. Check if Git is installed:
-   ```bash
-   git --version
-   ```
-3. Clone a GitHub repository:
-   ```bash
-   git clone https://github.com/yourusername/yourrepository.git
-   ```
-
----
-
-## **8. Useful Commands to Test Your Setup**
-
-- **Check Ubuntu version:**
+- **Zsh** is an interactive shell for running commands, while **Neovim** is a powerful text editor.
+- **Zsh** helps with command-line efficiency, auto-suggestions, and plugins.
+- **Neovim** is optimized for coding, with syntax highlighting, plugins, and customization.
+- **Using Both:** You can configure **Neovim as your Zsh editor** by setting:
   ```bash
-  lsb_release -a
+  export EDITOR=nvim
   ```
+  This allows you to edit files inside your terminal seamlessly.
+
+**Pros:**
+✅ Neovim as default editor in Zsh streamlines workflow.
+✅ Zsh enhances command-line experience.
+
+**Cons:**
+❌ Using both might be overwhelming for beginners.
+❌ Requires time to configure properly.
+
+---
+
+lsb_release -a
+
+````
 - **List files in home directory:**
-  ```bash
-  ls -la ~
-  ```
+```bash
+ls -la ~
+````
+
 - **Check installed Node.js version:**
   ```bash
   node -v
