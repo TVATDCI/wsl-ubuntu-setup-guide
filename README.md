@@ -347,6 +347,79 @@ tmux source ~/.tmux.conf
 tmux
 ```
 
+Sure! Here are the tmux keybindings explained:
+
+### Keybindings Configuration in `~/.tmux.conf`
+
+```sh
+# Set better keybindings
+
+set -g mouse on # Enable mouse support for easier pane resizing
+unbind C-b # Unbind default tmux prefix (Ctrl+b)
+set -g prefix C-a # Set "Ctrl + a" as the new prefix (easier to use)
+bind C-a send-prefix # Let you send Ctrl+A to applications if needed
+
+# Split panes with shortcuts
+
+bind | split-window -h # Ctrl+A then | → Split horizontally
+bind - split-window -v # Ctrl+A then - → Split vertically
+
+# Switch panes with arrow keys
+
+bind -r Left select-pane -L
+bind -r Right select-pane -R
+bind -r Up select-pane -U
+bind -r Down select-pane -D
+
+# Resize panes with Shift + Arrow keys
+
+bind -r S-Left resize-pane -L 5
+bind -r S-Right resize-pane -R 5
+bind -r S-Up resize-pane -U 5
+bind -r S-Down resize-pane -D 5
+
+# Reload config with Ctrl+A then r
+
+bind r source-file ~/.tmux.conf \; display-message "Tmux config reloaded!"
+```
+
+### Explanation
+
+- **Mouse Support**: `set -g mouse on`
+
+  - Enables mouse support for easier pane resizing and navigation.
+
+- **Prefix Key**: `set -g prefix C-a`
+
+  - Changes the default prefix key from `Ctrl+b` to `Ctrl+a` for easier access.
+  - `unbind C-b` unbinds the default prefix key.
+
+- **Send Prefix**: `bind C-a send-prefix`
+
+  - Allows you to send `Ctrl+a` to applications if needed.
+
+- **Split Panes**:
+
+  - `bind | split-window -h`: `Ctrl+a` then `|` splits the window horizontally.
+  - `bind - split-window -v`: `Ctrl+a` then `-` splits the window vertically.
+
+- **Switch Panes**:
+
+  - `bind -r Left select-pane -L`: `Ctrl+a` then Left Arrow switches to the left pane.
+  - `bind -r Right select-pane -R`: `Ctrl+a` then Right Arrow switches to the right pane.
+  - `bind -r Up select-pane -U`: `Ctrl+a` then Up Arrow switches to the upper pane.
+  - `bind -r Down select-pane -D`: `Ctrl+a` then Down Arrow switches to the lower pane.
+
+- **Resize Panes**:
+
+  - `bind -r S-Left resize-pane -L 5`: `Shift + Left Arrow` resizes the pane to the left by 5 units.
+  - `bind -r S-Right resize-pane -R 5`: `Shift + Right Arrow` resizes the pane to the right by 5 units.
+  - `bind -r S-Up resize-pane -U 5`: `Shift + Up Arrow` resizes the pane upwards by 5 units.
+  - `bind -r S-Down resize-pane -D 5`: `Shift + Down Arrow` resizes the pane downwards by 5 units.
+
+- **Reload Configuration**:
+  - `bind r source-file ~/.tmux.conf \; display-message "Tmux config reloaded!"`: `Ctrl+a` then `r` reloads the tmux configuration file and displays a message.
+
 Now, try these:
 
 - **Split panes:**
