@@ -164,23 +164,28 @@ To use the same extensions in both environments:
 2. Sign in to your **GitHub or Microsoft account** to enable **Settings Sync**.
 3. Open **VS Code inside WSL** using:
    ```bash
-   code .
+   <<<<<<<<< Temporary merge branch 1
+   =========
+   git config --global user.name "YourName"
+   git config --global user.email "youremail@example.com"
    ```
-4. Sign in again and **enable syncing**.
-5. Your extensions and settings should now be synced!
+4. Check if Git is installed:
+   ```bash
+   git --version
+   ```
+5. Clone a GitHub repository:
+   ```bash
+   git clone https://github.com/yourusername/yourrepository.git
+   ```
 
 ---
 
-## **7. Difference Between Zsh and Neovim**
+## **8. Useful Commands to Test Your Setup**
 
-- **Zsh** is an interactive shell for running commands, while **Neovim** is a powerful text editor.
-- **Zsh** helps with command-line efficiency, auto-suggestions, and plugins.
-- **Neovim** is optimized for coding, with syntax highlighting, plugins, and customization.
-- **Using Both:** You can configure **Neovim as your Zsh editor** by setting:
+- **Check Ubuntu version:**
   ```bash
-  export EDITOR=nvim
+  lsb_release -a
   ```
-
 - **List files in home directory:**
   ```bash
   ls -la ~
@@ -204,24 +209,151 @@ Your Ubuntu files are stored inside WSL. You can access them in **Windows File E
 ```plaintext
 \\wsl.localhost\Ubuntu\home\<your-UNIX-username>
 ```
-=======
-  This allows you to edit files inside your terminal seamlessly.
 
+Or navigate to:
+
+```plaintext
+C:\Users\YourWindowsUsername\AppData\Local\Packages\CanonicalGroupLimited...\LocalState\rootfs\home\<your-UNIX-username>
+```
+
+---
+
+## **10. Moving Old Projects to WSL**
+
+1. Move your old project folders to:
+   ```plaintext
+   /home/<your-ubuntu-username>/
+   ```
+2. Open **VS Code** and navigate to the folder inside WSL.
+3. Run it in **Ubuntu terminal** using:
+
+   ```bash
+   cd ~/your-project-folder
+   >>>>>>>>> Temporary merge branch 2
+   code .
+   ```
+
+4. Sign in again and **enable syncing**.
+5. Your extensions and settings should now be synced!
+
+---
+
+## **7. Difference Between Zsh and Neovim**
+
+- **Zsh** is an interactive shell for running commands, while **Neovim** is a powerful text editor.
+- **Zsh** helps with command-line efficiency, auto-suggestions, and plugins.
+- **Neovim** is optimized for coding, with syntax highlighting, plugins, and customization.
+- **Using Both:** You can configure **Neovim as your Zsh editor** by setting:
+  ```bash
+  export EDITOR=nvim
+  ```
+  This allows you to edit files inside your terminal seamlessly.
 
 **Pros:**
 ✅ Neovim as default editor in Zsh streamlines workflow.
 ✅ Zsh enhances command-line experience.
 
-
 ```plaintext
 C:\Users\YourWindowsUsername\AppData\Local\Packages\CanonicalGroupLimited...\LocalState\rootfs\home\<your-UNIX-username>
 ```
+
 =======
 **Cons:**
 ❌ Using both might be overwhelming for beginners.
 ❌ Requires time to configure properly.
 
-
 ---
 
 ✅ **Now you have the perfect dual-terminal setup: Windows for daily tasks & Ubuntu for development!** 🚀
+
+Since you're often using multiple terminal tabs for your full-stack development, tmux is a great addition. Here’s why:
+
+### Split Your Terminal Efficiently
+
+You can divide your terminal into multiple panes and navigate between them easily.
+Example use case: Have backend logs on one side and your frontend dev server on another.
+
+### Persistent Sessions
+
+If you close your terminal by mistake, your running processes (like servers, databases, etc.) won’t die! You can reattach to them.
+
+### Better Navigation & Productivity
+
+You don’t have to constantly open and close new terminal tabs.
+Instead, just split panes inside tmux and jump between them with key bindings.
+
+Since you already have Zsh + Oh My Zsh + Powerlevel10k, I’d add tmux and configure it to work seamlessly with your current setup.
+
+1️⃣ **Install tmux**
+
+```sh
+sudo apt update && sudo apt install tmux -y
+```
+
+2️⃣ **Configure tmux for a Better Experience**
+Create a `~/.tmux.conf` file to customize it:
+
+```sh
+nano ~/.tmux.conf
+```
+
+Paste the following configuration:
+
+```sh
+# Set better keybindings
+
+set -g mouse on # Enable mouse support for easier pane resizing
+unbind C-b # Unbind default tmux prefix (Ctrl+b)
+set -g prefix C-a # Set "Ctrl + a" as the new prefix (easier to use)
+bind C-a send-prefix # Let you send Ctrl+A to applications if needed
+
+# Split panes with shortcuts
+
+bind | split-window -h # Ctrl+A then | → Split horizontally
+bind - split-window -v # Ctrl+A then - → Split vertically
+
+# Switch panes with arrow keys
+
+bind -r Left select-pane -L
+bind -r Right select-pane -R
+bind -r Up select-pane -U
+bind -r Down select-pane -D
+
+# Resize panes with Shift + Arrow keys
+
+bind -r S-Left resize-pane -L 5
+bind -r S-Right resize-pane -R 5
+bind -r S-Up resize-pane -U 5
+bind -r S-Down resize-pane -D 5
+
+# Reload config with Ctrl+A then r
+
+bind r source-file ~/.tmux.conf \; display-message "Tmux config reloaded!"
+```
+
+Save & exit (**Ctrl+X → Y → Enter**).
+
+3️⃣ **Reload tmux Configuration**
+
+```sh
+tmux source ~/.tmux.conf
+```
+
+4️⃣ **Start a New tmux Session**
+
+```sh
+tmux
+```
+
+Now, try these:
+
+- **Split panes:**
+  - `Ctrl + A` then `|` (vertical split)
+  - `Ctrl + A` then `-` (horizontal split)
+- **Switch between panes:** `Ctrl + A` then arrow keys
+- **Resize panes:** Shift + Arrow keys
+- **Detach from tmux (without closing it):** `Ctrl + A` then `D`
+- **Reattach to your session after closing the terminal:**
+  ```sh
+  tmux attach-session -t 0
+  ```
