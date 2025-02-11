@@ -192,58 +192,96 @@ To use the same extensions in both environments:
 
 ---
 
-lsb_release -a
-
-````
-- **List files in home directory:**
-```bash
-ls -la ~
-````
-
-- **Check installed Node.js version:**
-  ```bash
-  node -v
-  ```
-- **Display system info using Neofetch:**
-  ```bash
-  sudo apt install -y neofetch
-  neofetch
-  ```
-
----
-
-## **9. Accessing Ubuntu Files from Windows**
-
-Your Ubuntu files are stored inside WSL. You can access them in **Windows File Explorer** by typing:
-
-```plaintext
-\\wsl.localhost\Ubuntu\home\<your-UNIX-username>
-```
-
-Or navigate to:
-
-```plaintext
-C:\Users\YourWindowsUsername\AppData\Local\Packages\CanonicalGroupLimited...\LocalState\rootfs\home\<your-UNIX-username>
-```
-
----
-
-## **10. Moving Old Projects to WSL**
-
-1. Move your old project folders to:
-   ```plaintext
-   /home/<your-ubuntu-username>/
-   ```
-2. Open **VS Code** and navigate to the folder inside WSL.
-3. Run it in **Ubuntu terminal** using:
-
-   ```bash
-   cd ~/your-project-folder
-   code .
-   ```
-
-   ```
-
-   ```
-
 ✅ **Now you have the perfect dual-terminal setup: Windows for daily tasks & Ubuntu for development!** 🚀
+
+Since you're often using multiple terminal tabs for your full-stack development, tmux is a great addition. Here’s why:
+
+### Split Your Terminal Efficiently
+
+You can divide your terminal into multiple panes and navigate between them easily.
+Example use case: Have backend logs on one side and your frontend dev server on another.
+
+### Persistent Sessions
+
+If you close your terminal by mistake, your running processes (like servers, databases, etc.) won’t die! You can reattach to them.
+
+### Better Navigation & Productivity
+
+You don’t have to constantly open and close new terminal tabs.
+Instead, just split panes inside tmux and jump between them with key bindings.
+
+Since you already have Zsh + Oh My Zsh + Powerlevel10k, I’d add tmux and configure it to work seamlessly with your current setup.
+
+1️⃣ **Install tmux**
+
+```sh
+sudo apt update && sudo apt install tmux -y
+```
+
+2️⃣ **Configure tmux for a Better Experience**
+Create a `~/.tmux.conf` file to customize it:
+
+```sh
+nano ~/.tmux.conf
+```
+
+Paste the following configuration:
+
+```sh
+# Set better keybindings
+
+set -g mouse on # Enable mouse support for easier pane resizing
+unbind C-b # Unbind default tmux prefix (Ctrl+b)
+set -g prefix C-a # Set "Ctrl + a" as the new prefix (easier to use)
+bind C-a send-prefix # Let you send Ctrl+A to applications if needed
+
+# Split panes with shortcuts
+
+bind | split-window -h # Ctrl+A then | → Split horizontally
+bind - split-window -v # Ctrl+A then - → Split vertically
+
+# Switch panes with arrow keys
+
+bind -r Left select-pane -L
+bind -r Right select-pane -R
+bind -r Up select-pane -U
+bind -r Down select-pane -D
+
+# Resize panes with Shift + Arrow keys
+
+bind -r S-Left resize-pane -L 5
+bind -r S-Right resize-pane -R 5
+bind -r S-Up resize-pane -U 5
+bind -r S-Down resize-pane -D 5
+
+# Reload config with Ctrl+A then r
+
+bind r source-file ~/.tmux.conf \; display-message "Tmux config reloaded!"
+```
+
+Save & exit (**Ctrl+X → Y → Enter**).
+
+3️⃣ **Reload tmux Configuration**
+
+```sh
+tmux source ~/.tmux.conf
+```
+
+4️⃣ **Start a New tmux Session**
+
+```sh
+tmux
+```
+
+Now, try these:
+
+- **Split panes:**
+  - `Ctrl + A` then `|` (vertical split)
+  - `Ctrl + A` then `-` (horizontal split)
+- **Switch between panes:** `Ctrl + A` then arrow keys
+- **Resize panes:** Shift + Arrow keys
+- **Detach from tmux (without closing it):** `Ctrl + A` then `D`
+- **Reattach to your session after closing the terminal:**
+  ```sh
+  tmux attach-session -t 0
+  ```
