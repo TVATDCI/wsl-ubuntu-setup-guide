@@ -347,42 +347,6 @@ tmux source ~/.tmux.conf
 tmux
 ```
 
-Sure! Here are the tmux keybindings explained:
-
-### Keybindings Configuration in `~/.tmux.conf`
-
-```sh
-# Set better keybindings
-
-set -g mouse on # Enable mouse support for easier pane resizing
-unbind C-b # Unbind default tmux prefix (Ctrl+b)
-set -g prefix C-a # Set "Ctrl + a" as the new prefix (easier to use)
-bind C-a send-prefix # Let you send Ctrl+A to applications if needed
-
-# Split panes with shortcuts
-
-bind | split-window -h # Ctrl+A then | → Split horizontally
-bind - split-window -v # Ctrl+A then - → Split vertically
-
-# Switch panes with arrow keys
-
-bind -r Left select-pane -L
-bind -r Right select-pane -R
-bind -r Up select-pane -U
-bind -r Down select-pane -D
-
-# Resize panes with Shift + Arrow keys
-
-bind -r S-Left resize-pane -L 5
-bind -r S-Right resize-pane -R 5
-bind -r S-Up resize-pane -U 5
-bind -r S-Down resize-pane -D 5
-
-# Reload config with Ctrl+A then r
-
-bind r source-file ~/.tmux.conf \; display-message "Tmux config reloaded!"
-```
-
 ### Explanation
 
 - **Mouse Support**: `set -g mouse on`
