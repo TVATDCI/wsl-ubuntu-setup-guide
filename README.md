@@ -164,8 +164,75 @@ To use the same extensions in both environments:
 2. Sign in to your **GitHub or Microsoft account** to enable **Settings Sync**.
 3. Open **VS Code inside WSL** using:
    ```bash
+   <<<<<<<<< Temporary merge branch 1
+   =========
+   git config --global user.name "YourName"
+   git config --global user.email "youremail@example.com"
+   ```
+4. Check if Git is installed:
+   ```bash
+   git --version
+   ```
+5. Clone a GitHub repository:
+   ```bash
+   git clone https://github.com/yourusername/yourrepository.git
+   ```
+
+---
+
+## **8. Useful Commands to Test Your Setup**
+
+- **Check Ubuntu version:**
+  ```bash
+  lsb_release -a
+  ```
+- **List files in home directory:**
+  ```bash
+  ls -la ~
+  ```
+- **Check installed Node.js version:**
+  ```bash
+  node -v
+  ```
+- **Display system info using Neofetch:**
+  ```bash
+  sudo apt install -y neofetch
+  neofetch
+  ```
+
+---
+
+## **9. Accessing Ubuntu Files from Windows**
+
+Your Ubuntu files are stored inside WSL. You can access them in **Windows File Explorer** by typing:
+
+```plaintext
+\\wsl.localhost\Ubuntu\home\<your-UNIX-username>
+```
+
+Or navigate to:
+
+```plaintext
+C:\Users\YourWindowsUsername\AppData\Local\Packages\CanonicalGroupLimited...\LocalState\rootfs\home\<your-UNIX-username>
+```
+
+---
+
+## **10. Moving Old Projects to WSL**
+
+1. Move your old project folders to:
+   ```plaintext
+   /home/<your-ubuntu-username>/
+   ```
+2. Open **VS Code** and navigate to the folder inside WSL.
+3. Run it in **Ubuntu terminal** using:
+
+   ```bash
+   cd ~/your-project-folder
+   >>>>>>>>> Temporary merge branch 2
    code .
    ```
+
 4. Sign in again and **enable syncing**.
 5. Your extensions and settings should now be synced!
 
@@ -186,6 +253,11 @@ To use the same extensions in both environments:
 ✅ Neovim as default editor in Zsh streamlines workflow.
 ✅ Zsh enhances command-line experience.
 
+```plaintext
+C:\Users\YourWindowsUsername\AppData\Local\Packages\CanonicalGroupLimited...\LocalState\rootfs\home\<your-UNIX-username>
+```
+
+=======
 **Cons:**
 ❌ Using both might be overwhelming for beginners.
 ❌ Requires time to configure properly.
