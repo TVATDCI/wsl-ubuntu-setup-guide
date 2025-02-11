@@ -266,7 +266,9 @@ C:\Users\YourWindowsUsername\AppData\Local\Packages\CanonicalGroupLimited...\Loc
 
 ✅ **Now you have the perfect dual-terminal setup: Windows for daily tasks & Ubuntu for development!** 🚀
 
-Since I have been often using multiple terminal tabs for your full-stack development, tmux is a great addition. Here’s why: I am learning how to do things!
+## Ps.
+
+Since I have been often using multiple terminal tabs for your full-stack development, tmux is a great addition. Here’s why: It is part of my learning experiences of things are 😁
 
 ### Split Your Terminal Efficiently
 
